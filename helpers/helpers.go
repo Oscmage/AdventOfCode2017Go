@@ -3,6 +3,7 @@ package helpers
 import (
 	"io/ioutil"
 	"log"
+	"strconv"
 	"strings"
 )
 
@@ -19,6 +20,11 @@ func ReadFileByLine(path string) []string {
 	return strings.Split(string(file), "\n")
 }
 
+func ReadFirstLineWithSpaces(path string) []string {
+	arr := ReadFileByLineAndSpace(path)
+	return arr[0]
+}
+
 func ReadFileByLineAndSpace(path string) [][]string {
 	rows := ReadFileByLine(path)
 
@@ -29,4 +35,15 @@ func ReadFileByLineAndSpace(path string) [][]string {
 	}
 
 	return matrix
+}
+
+func ParseToInt(lines []string) []int {
+	intLines := make([]int, len(lines), cap(lines))
+
+	for index, line := range lines {
+		element, _ := strconv.ParseInt(line, 10, 0)
+		asInt := int(element)
+		intLines[index] = asInt
+	}
+	return intLines
 }

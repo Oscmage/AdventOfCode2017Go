@@ -2,7 +2,6 @@ package day5
 
 import (
 	"AdventOfCode2017/helpers"
-	"strconv"
 )
 
 const fileName = "day5/input"
@@ -15,7 +14,7 @@ func FirstPart() int {
 }
 
 func general(withWeirdCondition bool) int {
-	var lines []int = parseToInt(helpers.ReadFileByLine(fileName))
+	var lines []int = helpers.ParseToInt(helpers.ReadFileByLine(fileName))
 
 	steps, pointer := 0, 0
 	for pointer < len(lines) {
@@ -36,15 +35,4 @@ func general(withWeirdCondition bool) int {
 */
 func SecondPart() int {
 	return general(true)
-}
-
-func parseToInt(lines []string) []int {
-	intLines := make([]int, len(lines), cap(lines))
-
-	for index, line := range lines {
-		element, _ := strconv.ParseInt(line, 10, 0)
-		asInt := int(element)
-		intLines[index] = asInt
-	}
-	return intLines
 }
