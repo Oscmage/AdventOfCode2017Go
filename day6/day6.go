@@ -13,17 +13,15 @@ func FirstPart() int {
 	m := make(map[string]bool)
 
 	largestPointer, count := 0, 0
-	start := true
 
-	m[toString(arr)] = true
 	for {
+		count++
+		m[toString(arr)] = true
 		largestPointer = findLargestPos(arr)
-		if !start && m[toString(arr)] {
-			return count
-		}
-		start = false
+
 		// Distribute
 		largestVal := arr[largestPointer]
+		arr[largestPointer] = 0
 		internalPointer := largestPointer + 1
 		for largestVal > 0 {
 			if internalPointer == len(arr) {
@@ -33,10 +31,10 @@ func FirstPart() int {
 			internalPointer++
 			largestVal--
 		}
-		m[toString(arr)] = true
-		count++
+		if m[toString(arr)] {
+			return count
+		}
 	}
-	return count
 }
 
 // Should be redefined and not used, this can be done smarter
