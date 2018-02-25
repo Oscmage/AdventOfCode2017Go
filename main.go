@@ -6,6 +6,7 @@ import (
 )
 
 func main() {
-	fmt.Println(day6.FirstPart())
+	val, _ := day6.FirstPart()
+	fmt.Println(val)
 	fmt.Println(day6.SecondPart())
 }
