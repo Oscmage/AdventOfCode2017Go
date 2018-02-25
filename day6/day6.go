@@ -37,7 +37,58 @@ func FirstPart() int {
 	}
 }
 
-// Should be redefined and not used, this can be done smarter
+func SecondPart() int {
+	arr := helpers.ParseToInt(helpers.ReadFirstLineWithSpaces(fileName))
+	m := make(map[string]bool)
+
+	largestPointer, count := 0, 0
+
+	for {
+		count++
+		m[toString(arr)] = true
+		largestPointer = findLargestPos(arr)
+
+		// Distribute
+		largestVal := arr[largestPointer]
+		arr[largestPointer] = 0
+		internalPointer := largestPointer + 1
+		for largestVal > 0 {
+			if internalPointer == len(arr) {
+				internalPointer = 0
+			}
+			arr[internalPointer]++
+			internalPointer++
+			largestVal--
+		}
+		if m[toString(arr)] {
+			break
+		}
+	}
+
+	copy := toString(arr)
+	count = 0
+	for {
+		count++
+		largestPointer = findLargestPos(arr)
+		// Distribute
+		largestVal := arr[largestPointer]
+		arr[largestPointer] = 0
+		internalPointer := largestPointer + 1
+		for largestVal > 0 {
+			if internalPointer == len(arr) {
+				internalPointer = 0
+			}
+			arr[internalPointer]++
+			internalPointer++
+			largestVal--
+		}
+		if toString(arr) == copy {
+			return count
+		}
+	}
+
+}
+
 func findLargestPos(arr []int) int {
 	largest := 0
 	for pos, elem := range arr {
