@@ -1,11 +1,12 @@
 package main
 
 import (
-	"AdventOfCode2017/day7"
+	"AdventOfCode2017/asd"
 	"fmt"
 )
 
 func main() {
-	fmt.Println(day7.FirstPart())
-	fmt.Println(day7.SecondPart())
+	//fmt.Println(asd.Solution("011100"))
+	fmt.Println(asd.SolutionTwo("00000000"))
+
 }

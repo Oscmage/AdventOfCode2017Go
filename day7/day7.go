@@ -115,8 +115,10 @@ func balanced(node string, m map[string]*element) (bool, int) {
 
 	uniqueElem, ok := findUniqueElem(children)
 
-	if ok != nil {
+	if ok == nil {
+		fmt.Println("--------New round of for loops-------")
 		for _, child := range children {
+			fmt.Println(child.totWeight)
 			if uniqueElem.totWeight != child.totWeight {
 				if uniqueElem.totWeight >= child.totWeight {
 					return false, (uniqueElem.elem.val - (uniqueElem.totWeight - child.totWeight))
@@ -124,6 +126,7 @@ func balanced(node string, m map[string]*element) (bool, int) {
 				return false, (uniqueElem.elem.val - (child.totWeight - uniqueElem.totWeight))
 			}
 		}
+		fmt.Println("---------Done with loops-------")
 		fmt.Println("Something seriously wrong")
 		os.Exit(1)
 	} else {
@@ -148,5 +151,9 @@ func findUniqueElem(children []totWeightElement) (totWeightElement, error) {
 			}
 		}
 	}
-	return totWeightElement{}, nil
+	return totWeightElement{}, 
+}
+
+func victory(a string, b string) bool {
+
 }
